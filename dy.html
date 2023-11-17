@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单页面网页</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container input {
+            height: 35px;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 10px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .container button {
+            height: 50px;
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 601px) {
+            .container {
+                flex-direction: row;
+            }
+
+            .container input {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+
+            .container button {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+    <script>
+        function copyText() {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById("inputText").value = text;
+            });
+        }
+
+        function goToLinks() {
+            const inputText = document.getElementById("inputText").value;
+            const regex = /https?:\/\/[^\s]+/g;
+            const links = inputText.match(regex);
+
+            if (links) {
+                links.forEach(link => {
+                    window.open(link, "_blank");
+                });
+            } else {
+                alert("没有找到超链接");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="inputText" placeholder="请输入文本">
+        <button onclick="copyText()">粘贴</button>
+        <button onclick="goToLinks()">GO</button>
+    </div>
+</body>
+</html>
