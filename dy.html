@@ -24,6 +24,22 @@
                 alert("没有找到超链接");
             }
         }
+
+
+        function goToLinks2() {
+            navigator.clipboard.readText().then(text => {
+            const regex = /https?:\/\/[^\s]+/g;
+            const links = text.match(regex);
+
+            if (links) {
+                links.forEach(link => {
+                    window.open(link, "_blank");
+                });
+            } else {
+                alert("没有找到超链接");
+            }
+        });
+}
     </script>
 </head>
 <style>
@@ -81,8 +97,9 @@
 <body>
     <div class="container">
         <textarea id="inputText" placeholder="请输入文本"></textarea>
-        <button onclick="copyText()">粘贴</button>
+        <button onclick="copyText()" id="zhantie">粘贴</button>
         <button onclick="goToLinks()">GO</button>
+        <button onclick="goToLinks2()">一键跳转</button>
     </div>
 </body>
 </html>
