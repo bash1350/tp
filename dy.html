@@ -4,55 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>视频嗅探</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .container input {
-            height: 200px;
-            width: 100%;
-            max-width: 350px;
-            margin-bottom: 10px;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-        .container button {
-            height: 50px;
-            width: 100%;
-            max-width: 200px;
-            margin-bottom: 10px;
-        }
-
-        @media (min-width: 601px) {
-            .container {
-                flex-direction: row;
-            }
-
-            .container input {
-                margin-bottom: 0;
-                margin-right: 10px;
-            }
-
-            .container button {
-                margin-bottom: 0;
-            }
-        }
-    </style>
     <script>
         function copyText() {
             navigator.clipboard.readText().then(text => {
@@ -75,9 +26,61 @@
         }
     </script>
 </head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .container textarea {
+        resize: both;
+        overflow: scroll;
+        height: 200px;
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+        overflow-wrap: break-word; /* 修改这一行 */
+    }
+
+    .container button {
+        height: 50px;
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+
+    @media (min-width: 601px) {
+        .container {
+            flex-direction: row;
+        }
+
+        .container input {
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+
+        .container button {
+            margin-bottom: 0;
+        }
+    }
+</style>
 <body>
     <div class="container">
-        <input type="text" id="inputText" placeholder="请输入文本">
+        <textarea id="inputText" placeholder="请输入文本"></textarea>
         <button onclick="copyText()">粘贴</button>
         <button onclick="goToLinks()">GO</button>
     </div>
